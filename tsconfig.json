@@ -9,6 +9,8 @@
     "target": "ES2023",
     "sourceMap": true,
     "outDir": "./dist",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
       "src/*": ["./src/*"]
