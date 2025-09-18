@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BooksCategory } from 'src/categories/enity/books-category.entity';
+import { BooksCategory } from 'src/categories/entity/books-category.entity';
 import { CreateCategoryDto } from 'src/categories/dto/create-category.dto';
 import { UpdateCategoryDto } from 'src/categories/dto/update-category.dto';
 
@@ -30,7 +30,10 @@ export class BooksCategoryService {
       );
     }
 
-    const category = this.categoryRepository.create(createCategoryDto);
+    const category = this.categoryRepository.create({
+      name: createCategoryDto.name,
+      description: createCategoryDto.description,
+    });
     return await this.categoryRepository.save(category);
   }
 
@@ -80,7 +83,6 @@ export class BooksCategoryService {
 
   async remove(id: number): Promise<void> {
     const result = await this.categoryRepository.delete(id);
-
     if (result.affected === 0) {
       throw new NotFoundException(`Category with ID ${id} not found`);
     }

@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from './enity/book.enity';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
-import { BooksCategory } from '../categories/enity/books-category.entity';
+import { BooksCategory } from '../categories/entity/books-category.entity';
 import { Pagination } from 'src/decorators/pagination.decorator';
 import { Sorting } from 'src/decorators/sorting.decorator';
 import { Filtering } from 'src/decorators/filtering.decorator';
@@ -26,7 +26,7 @@ export class BookService {
   ): Promise<PaginatedResource<Partial<Book>>> {
     const where = filter ? getWhere(filter) : {};
     const order = sort ? getOrder(sort) : {};
-    const [ data, total ] = await this.bookRepository.findAndCount({
+    const [data, total] = await this.bookRepository.findAndCount({
       where,
       order,
       take: limit,
@@ -37,7 +37,7 @@ export class BookService {
       data,
       page,
       size,
-    }
+    };
   }
 
   async createBook(createBookDto: CreateBookDto): Promise<Book> {
@@ -80,9 +80,9 @@ export class BookService {
 
   async remove(id: number): Promise<void> {
     const result = await this.bookRepository.delete(id);
-    
+
     if (result.affected === 0) {
-      throw new NotFoundException(`Book with ID ${id} not found`)
+      throw new NotFoundException(`Book with ID ${id} not found`);
     }
   }
 }

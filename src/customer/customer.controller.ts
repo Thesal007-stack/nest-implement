@@ -1,8 +1,7 @@
 import { Body, Controller, Get, Logger, Param, Post } from '@nestjs/common';
-import { Customer } from './enity/customer.enity';
+import { Customer } from './entity/customer.entity';
 import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/create-customer';
-import { ResponseMessage } from 'src/pipe/response-message.decorator';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('customer')
@@ -36,9 +35,8 @@ export class CustomerController {
     summary: 'Get Customer by id',
     description: 'Get Customer data by id',
   })
-  @ResponseMessage('Customer data fetched successfully')
   @Get(':id')
-  async findById(@Param('id') id: string): Promise<Customer> {
+  async findById(@Param('id') id: number): Promise<Customer> {
     return this.customerService.findOne(id);
   }
 }
