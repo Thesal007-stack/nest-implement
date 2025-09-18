@@ -106,13 +106,13 @@ export class ProductController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Product | null> {
+  async findOne(@Param('id') id: number): Promise<Product | null> {
     return await this.productService.findOne(id);
   }
 
   @Patch(':id')
   async update(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body() updateProductDto: UpdateProductDto,
   ) {
     return await this.productService.update(id, updateProductDto);

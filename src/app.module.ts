@@ -10,10 +10,17 @@ import { ProductModule } from './product/product.module';
 import { Product } from './product/enity/product.enity';
 import { BookModule } from './book/book.module';
 import { Book } from './book/enity/book.enity';
-import { BooksCategory } from './categories/enity/books-category.entity';
+import { BooksCategory } from './categories/entity/books-category.entity';
 import { CustomerModule } from './customer/customer.module';
-import { Customer } from './customer/enity/customer.enity';
-import { Order } from './order/enity/order.enity';
+import { Customer } from './customer/entity/customer.entity';
+import { Order } from './order/entity/order.entity';
+import { OrderModule } from './order/order.module';
+import { OrderItemModule } from './order-item/order-item.module';
+import { OrderItem } from './order-item/enity/order-item.entity';
+import { FolderModule } from './folder/folder.module';
+import { Folder } from './folder/entities/folder.entity';
+import { FileModule } from './file/file.module';
+import { File } from './file/entities/file.entity';
 
 @Module({
   controllers: [AppController],
@@ -25,7 +32,17 @@ import { Order } from './order/enity/order.enity';
       port: 5432,
       password: '@Mon1016',
       username: 'postgres',
-      entities: [User, Product, Book, BooksCategory, Customer, Order],
+      entities: [
+        User,
+        Product,
+        Book,
+        BooksCategory,
+        Customer,
+        Order,
+        OrderItem,
+        Folder,
+        File
+      ],
       database: 'users',
       synchronize: true,
       logging: true,
@@ -33,7 +50,11 @@ import { Order } from './order/enity/order.enity';
     UsersModule,
     ProductModule,
     BookModule,
+    OrderModule,
     CustomerModule,
+    OrderItemModule,
+    FolderModule,
+    FileModule
   ],
 })
 export class AppModule {}

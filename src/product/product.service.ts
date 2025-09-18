@@ -49,15 +49,15 @@ export class ProductService {
   }
 
   async findAll(): Promise<Product[]> {
-    return this.productRepository.find();
+    return this.productRepository.find({relations: ['orderItems']});
   }
 
-  async findOne(@Param('id') id: string): Promise<Product | null> {
+  async findOne(@Param('id') id: number): Promise<Product | null> {
     return this.productRepository.findOne({ where: { id } });
   }
 
   async update(
-    id: string,
+    id: number,
     updateProductDto: UpdateProductDto,
   ): Promise<Product | null> {
     await this.productRepository.update(id, updateProductDto);
