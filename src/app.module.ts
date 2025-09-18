@@ -11,6 +11,10 @@ import { Product } from './product/enity/product.enity';
 import { BookModule } from './book/book.module';
 import { Book } from './book/enity/book.enity';
 import { BooksCategory } from './categories/enity/books-category.entity';
+import { CustomerModule } from './customer/customer.module';
+import { Customer } from './customer/enity/customer.enity';
+import { Order } from './order/enity/order.enity';
+
 @Module({
   controllers: [AppController],
   providers: [AppService],
@@ -21,7 +25,7 @@ import { BooksCategory } from './categories/enity/books-category.entity';
       port: 5432,
       password: '@Mon1016',
       username: 'postgres',
-      entities: [User, Product, Book, BooksCategory],
+      entities: [User, Product, Book, BooksCategory, Customer, Order],
       database: 'users',
       synchronize: true,
       logging: true,
@@ -29,6 +33,7 @@ import { BooksCategory } from './categories/enity/books-category.entity';
     UsersModule,
     ProductModule,
     BookModule,
+    CustomerModule,
   ],
 })
 export class AppModule {}

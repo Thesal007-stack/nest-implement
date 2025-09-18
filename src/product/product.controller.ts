@@ -49,7 +49,7 @@ export class ProductController {
   }
 
   @ApiOperation({
-    summary: 'Get all products'
+    summary: 'Get all products',
   })
   @ApiResponse({ status: 201, description: 'Product create successfully!' })
   @Get('findAll')
